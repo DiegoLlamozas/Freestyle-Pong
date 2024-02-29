@@ -389,6 +389,7 @@ function love.draw()
         displayNumberOfPlayersSelection()
         displayPlayerSelection()
         displayConfirmationButton()
+        drawSelectionIndicator()
     end
     
     -- end our drawing to push
@@ -441,25 +442,25 @@ end
 function displayPlayerSpeedSelection()
     love.graphics.setFont(smallFont)
     love.graphics.setColor(0, 1, 0, 1)
-    love.graphics.print('Players spd:'  .. PADDLE_SPEED, VIRTUAL_WIDTH/2, 25)
+    love.graphics.print('Players spd:'  .. PADDLE_SPEED, VIRTUAL_WIDTH/2 - 50, 25)
 end
 
 function displayBallAccelerationSelection()
     love.graphics.setFont(smallFont)
     love.graphics.setColor(0, 1, 0, 1)
-    love.graphics.print('Ball Accel:'  .. BALL_ACCELERATION, VIRTUAL_WIDTH/2, 35)
+    love.graphics.print('Ball Accel:'  .. BALL_ACCELERATION, VIRTUAL_WIDTH/2 - 50, 35)
 end
 
 function displayScoreForVictorySelection()
     love.graphics.setFont(smallFont)
     love.graphics.setColor(0, 1, 0, 1)
-    love.graphics.print('Maximum Score:'  .. VICTORY_SCORE, VIRTUAL_WIDTH/2, 45)
+    love.graphics.print('Maximum Score:'  .. VICTORY_SCORE, VIRTUAL_WIDTH/2 - 50, 45)
 end
 
 function displayNumberOfPlayersSelection()
     love.graphics.setFont(smallFont)
     love.graphics.setColor(0, 1, 0, 1)
-    love.graphics.print('Number of Players: 1      2' , VIRTUAL_WIDTH/2, 55)
+    love.graphics.print('Number of Players: 1      2' , VIRTUAL_WIDTH/2 - 50, 55)
 end
 
 
@@ -467,12 +468,32 @@ function displayPlayerSelection()
     if NUMBER_OF_PLAYERS == 1 then
         love.graphics.setFont(smallFont)
         love.graphics.setColor(0, 1, 0, 1)
-        love.graphics.print('Select your player: 1      2', VIRTUAL_WIDTH/2, 65)
+        love.graphics.print('Select your player: 1      2', VIRTUAL_WIDTH/2 - 50, 65)
     end
 end
 
 function displayConfirmationButton()
     love.graphics.setFont(smallFont)
     love.graphics.setColor(0, 1, 0, 1)
-    love.graphics.print('Confirm? Y     N', VIRTUAL_WIDTH/2, 75)
+    love.graphics.print('Confirm? Y     N', VIRTUAL_WIDTH/2 - 50, 75)
+end
+
+function drawSelectionIndicator()
+    local indicatorX = VIRTUAL_WIDTH / 2 - 60 -- Adjust as needed
+    local indicatorY = 25 -- Adjust as needed
+
+    if menuState == 'modifyBallAccel' then
+        indicatorY = 35
+    elseif menuState == 'modifyVictoryScore' then
+        indicatorY = 45
+    elseif menuState == 'modifyNumOfPlayers' then
+        indicatorY = 55
+    elseif menuState == 'selectPlayer' then
+        indicatorY = 65
+    elseif menuState == 'confirm' then
+        indicatorY = 75
+    end
+
+    love.graphics.setColor(1, 0, 0, 1) -- Adjust color as needed
+    love.graphics.polygon('fill', indicatorX, indicatorY, indicatorX + 5, indicatorY + 5, indicatorX + 10, indicatorY)
 end
