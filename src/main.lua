@@ -389,7 +389,6 @@ function love.draw()
         displayNumberOfPlayersSelection()
         displayPlayerSelection()
         displayConfirmationButton()
-        displaySelectionTriangle()
     end
     
     -- end our drawing to push
@@ -476,31 +475,4 @@ function displayConfirmationButton()
     love.graphics.setFont(smallFont)
     love.graphics.setColor(0, 1, 0, 1)
     love.graphics.print('Confirm? Y     N', VIRTUAL_WIDTH/2, 75)
-end
-
-
-function displaySelectionTriangle(menuState)
-    triangleX = VIRTUAL_WIDTH / 2 - 50
-    triangleY = 0
-
-    if menuState == 'modifyPaddleSpd' then
-        triangleY = 25
-    elseif menuState == 'modifyBallAccel' then
-        triangleY = 35
-    elseif menuState == 'modifyVictoryScore' then
-        triangleY = 45
-    elseif menuState == 'modifyNumOfPlayers' then
-        triangleY = 55
-    elseif menuState == 'selectPlayer' then
-        triangleY = 65
-    elseif menuState == 'confirm' then
-        triangleY = 75
-    end
-
-    -- Draw the triangle
-    love.graphics.setColor(1, 1, 1) -- Set color to white
-    love.graphics.polygon('fill',
-        triangleX, triangleY,                           -- Top vertex
-        triangleX + 5, triangleY + 10,                  -- Bottom-left vertex
-        triangleX + 10, triangleY)                      -- Bottom-right vertex
 end
